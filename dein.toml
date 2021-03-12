@@ -1,0 +1,36 @@
+# Vimのステータスラインに情報表示や見やすさのカスタムができるプラグイン
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+# インデントを可視化するプラグイン
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+# repo = 'Yggdroot/indentLine'
+
+# 日本語に翻訳した Vim 付属のヘルプの表示
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+# NerdTree
+[[plugins]]
+repo = 'preservim/nerdtree'
+
+# NerdTreeでアイコン表示できるようにする
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+# Gitで管理しているファイル編集時に差分を表現する記号が左端に表示されるようになる
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+# Vim上でのgit操作の実現
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+# Vimでコメントアウトができるようになる
+[[plugins]]
+repo = 'tpope/vim-commentary'
+
+# NerdTreeのファイルアイコンに色をつける
+[[plugins]]
+repo = 'lambdalisue/glyph-palette.vim'
