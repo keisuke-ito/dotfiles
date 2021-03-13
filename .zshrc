@@ -87,7 +87,8 @@ export PGDATA="/usr/local/var/postgres"
 # ===================================================
 # Alias Settings
 # ===================================================
-alias ls='ls -aF'
+export LSCOLORS=gxfxcxdxbxegedabagacad
+alias ls='ls -aGF'
 alias ll='ls -l'
 alias vimz='vim ~/.zshrc'
 alias sourcezsh='source ~/.zshrc'
