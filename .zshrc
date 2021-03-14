@@ -34,12 +34,12 @@ function +vi-git-config-user(){
 #  }
 function left-prompt {
   # [30;48;5;色番号m で背景色、[38;5;色番号m で文字色を指定できる。
-  host_t='015m%}'      # user name text clolr
-  host_b='245m%}'    # user name background color
-  name_t='015m%}'
-  name_b='130m%}'
-  path_t='255m%}'     # path text clolr
-  path_b='031m%}'   # path background color
+  host_t='234m%}'      # user name text clolr
+  host_b='248m%}'    # user name background color
+  name_t='234m%}'
+  name_b='025m%}'
+  path_t='234m%}'     # path text clolr
+  path_b='220m%}'   # path background color
   text_color='%{\e[38;5;'    # set text color
   back_color='%{\e[30;48;5;' # set background color
   reset='%{\e[0m%}'   # reset
