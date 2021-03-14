@@ -3,6 +3,7 @@ source /usr/local/etc/bash_completion.d/git-prompt.sh
 source /usr/local/etc/bash_completion.d/git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWCOLORHINTS=true
 
 # ===================================================
 # Prompt Settings
@@ -11,12 +12,31 @@ GIT_PS1_SHOWUNTRACKEDFILES=true
 # for bash version 3
 # export PS1='\[\e[1;35m\]\u\[\e[0m\]\[\e[32m\]:\[\e[0m\]\[\e[33m\]\w\[\e[0m\]\[\033[36m\]$(__git_ps1)\n\[\033[00m\]\[\e[32m\]\$\[\e[0m\] '
 # for bash version 4,5
-function _emoji(){
-  echo -e '\U1F449'
-}
-# triangle: 
 # export PS1='\[\e[1;35m\]\h\[\e[0m\]\[\e[32m\]:\[\e[0m\]\[\e[33m\]\w\[\e[0m\]\[\033[36m\]$(__git_ps1)\[\033[00m\]\n\[\e[32m\]\$\[\e[0m\] $(_emoji) '
 # export PS1='\[\e[1;30;44m\] \h \[\e[0m\]\[\e[1;34;42m\]\[\e[0m\]\[\e[30;42m\] \u \[\e[0m\]\[\e[32;46m\]\[\e[0m\]\[\e[30;46m\] \w \[\e[0m\]\[\e[36m\]\[\e0m\]\[\033[36m\]$(__git_ps1)\[\033[00m\]\n\[\e[32m\]\$\[\e[0m\] '
+
+# function
+function _emoji() {
+  echo -e '\U1F449'
+}
+
+function _git_self() {
+  echo -e '$(__git_ps1)'
+}
+
+function hello() {
+  echo "hello world from $1"
+}
+
+# 出力の後に改行を入れる
+function add_line {
+  # -z "~": ""内の文字列長が0ならば真となる
+  if [[ -z "${PS1_NEWLINE_LOGIN}" ]]; then
+    PS1_NEWLINE_LOGIN=true
+  else
+    printf "\n"
+  fi
+}
 
 function left-prompt {
   # [30;48;5;色番号m で背景色、[38;5;色番号m で文字色を指定できる。
@@ -34,19 +54,14 @@ function left-prompt {
   host="${back_color}${host_b}${text_color}${host_t}"
   user="${back_color}${name_b}${text_color}${name_t}"
   dir="${back_color}${path_b}${text_color}${path_t}"
-  echo "${host} \h ${back_color}${name_b}${text_color}${host_b}${sharp}${reset}${user} \u ${back_color}${path_b}${text_color}${name_b}${sharp}${reset}${dir} \w ${reset}${text_color}${path_b}${sharp}${reset}\[\033[36m\]\$(__git_ps1)\[\033[00m\]\n$ "
+  echo -e "${host} \h ${back_color}${name_b}${text_color}${host_b}${sharp}${reset}${user} \u ${back_color}${path_b}${text_color}${name_b}${sharp}${reset}${dir} \w ${reset}${text_color}${path_b}${sharp}${reset}\$(__git_ps1)\n$ "
 }
 export PS1=`left-prompt`
 
-# 出力の後に改行を入れる
-function add_line {
-  if [[ -z "${PS1_NEWLINE_LOGIN}" ]]; then
-    PS1_NEWLINE_LOGIN=true
-  else
-    printf '\n'
-  fi
+function prompt_command_all {
+  add_line
 }
-PROMPT_COMMAND='add_line'
+PROMPT_COMMAND='prompt_command_all'
 
 
 # ===================================================
@@ -61,6 +76,7 @@ alias sourceb='source ~/.bashrc'
 alias sourcebp='source ~/.bash_profile'
 alias cdtuba='cd ~/vs_code/Programming/ptj/tsubacle_server'
 alias cdvp='cd ~/vs_code/Programming/Python/django/'
+export GREP_OPTIONS='--color=always'
 
 # alias for Python
 alias python='python3'
